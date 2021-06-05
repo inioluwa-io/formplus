@@ -1,7 +1,7 @@
 import { mdiChevronRight, mdiInformationOutline, mdiMagnify } from "@mdi/js"
 import Icon from "@mdi/react"
 import React, { useState, useEffect, useCallback } from "react"
-import { Select, Input, Card } from "../components"
+import { Select, Input, Card, Loader } from "../components"
 import { Category, Template } from "../types"
 import { getTemplates } from "../utils/rest"
 
@@ -55,11 +55,11 @@ const HomePage: React.FC = () => {
   const [orderBy, setOrderBy] = useState<"ASC" | "DESC">("ASC")
   const [orderKey, setOrderKey] = useState<"name" | "created">("name")
   const [templates, setTemplates] = useState<Template[]>()
-  const [tmpTemplates, setTempTemplates] = useState<Template[]>()
+  const [tmpTemplates, setTempTemplates] = useState<Template[] | any>()
   const [searchValue, setSearchValue] = useState<string>("")
   const [page, setPage] = useState<number>(1)
   const [pageLength, setPageLength] = useState<number>(1)
-  const [perPage] = useState<number>(6)
+  const [perPage] = useState<number>(12)
   const [paginationIdx, setPaginationIdx] = useState<{
     start: number
     end: number
@@ -71,7 +71,7 @@ const HomePage: React.FC = () => {
 
     if (current) {
       getTemplates().then(resp => {
-        setTempTemplates(resp)
+        setTempTemplates(resp.data)
       })
     }
     return () => {
@@ -218,7 +218,7 @@ const HomePage: React.FC = () => {
       const remainder = length % perPage
       let result = length / perPage
       if (remainder) {
-        result = result + remainder
+        result = Math.floor(result) + 1
       }
 
       setPageLength(result)
@@ -309,7 +309,14 @@ const HomePage: React.FC = () => {
               )}
           </div>
         ) : (
-          "Not data"
+          <Loader
+            width="100%"
+            height="100%"
+            type="spinner"
+            withBackground={false}
+            iconSize={1.5}
+            style={{ position: "relative" }}
+          />
         )}
       </div>
       <Pagination

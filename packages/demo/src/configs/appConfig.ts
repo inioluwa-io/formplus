@@ -1,9 +1,9 @@
-type ThemeConfigProps = {
+type AppConfigProps = {
   restEndPoint: string
 }
 
-const themeConfig: ThemeConfigProps = {
-  restEndPoint: "https://sima-server.herokuapp.com/api/v1/admin",
+const appConfig: AppConfigProps = {
+  restEndPoint: "https://front-end-task-dot-fpls-dev.uc.r.appspot.com/api/v1/public/task_templates",
 }
 
-export default themeConfig
+export default appConfig

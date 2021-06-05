@@ -1,2 +1,2 @@
-import themeConfig from "./appConfig"
-export { themeConfig }
+import appConfig from "./appConfig"
+export { appConfig }
