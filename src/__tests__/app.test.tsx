@@ -1,7 +1,5 @@
 import React from "react"
-import { render } from "@testing-library/react"
 import App from "../App"
-import Home, { Pagination } from "../pages/home"
 import { Input } from "../components"
 import Enzyme, { shallow, mount } from "enzyme"
 import Adapter from "enzyme-adapter-react-16"
