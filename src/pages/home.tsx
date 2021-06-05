@@ -7,12 +7,12 @@ import { getTemplates } from "../utils/rest"
 
 type PaginationComponent = {
   length: number
-  page: number
+  page?: number
   onNext: () => void
   onPrev: () => void
 }
 
-const Pagination: React.FC<PaginationComponent> = ({
+export const Pagination: React.FC<PaginationComponent> = ({
   onNext,
   onPrev,
   page = 1,
@@ -22,6 +22,7 @@ const Pagination: React.FC<PaginationComponent> = ({
     <div className="flex justify-space-between margin-y-lg padding-x-lg sm-padding-x-sm">
       <div className="text-align-left">
         <button
+          className="prev-btn"
           onClick={() => {
             onPrev()
           }}
@@ -31,11 +32,12 @@ const Pagination: React.FC<PaginationComponent> = ({
       </div>
       <div className="flex justify-center align-center">
         <div className="flex">
-          <div className="btn margin-x-xs">{page}</div> of {length}
+          <div className="btn margin-x-xs  page-number">{page}</div> of {length}
         </div>
       </div>
       <div className="text-align-right">
         <button
+          id="next-btn"
           onClick={() => {
             onNext()
           }}
