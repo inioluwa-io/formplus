@@ -9,7 +9,7 @@ import "jest-styled-components"
 Enzyme.configure({ adapter: new Adapter() })
 
 describe("He", () => {
-  it("should render", () => {
-    mount(<App />)
-  })
+  it("Should render home page", () => {
+    shallow(<App />);
+  });
 })
